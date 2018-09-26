@@ -24,5 +24,25 @@ urlpatterns = [
     path('', include('portfolio.urls')),
     url(r'^accounts/login/$', views.login, name='login'),
     url(r'^accounts/logout/$', views.logout, name='logout', kwargs={'next_page': '/'}),
+    # change password urls
+    path('password_change/',
+         views.PasswordChangeView.as_view(),
+         name='password_change'),
+    path('password_change/done/',
+         views.PasswordChangeDoneView.as_view(),
+         name='password_change_done'),
+    # reset password urls
+    path('password_reset/',
+         views.PasswordResetView.as_view(),
+         name='password_reset_form'),
+    path('password_reset/done/',
+         views.PasswordResetDoneView.as_view(),
+         name='password_reset_done'),
+    path('reset/<uidb64>/<token>/',
+         views.PasswordResetConfirmView.as_view(),
+         name='password_reset_confirm'),
+    path('reset/done/',
+         views.PasswordResetCompleteView.as_view(),
+         name='password_reset_complete'),
 
 ]
